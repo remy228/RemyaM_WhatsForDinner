@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author_Name: abc"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:text="Software Version Number: 1.1"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:text="Help Url: help@whatsfordinner.com"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:text="Copyright_Information: Copyright (c) 2016 What's for Dinner
+All Rights Reserved
+
+This product is protected by copyright and distributed under
+licenses restricting copying, distribution and decompilation."
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
