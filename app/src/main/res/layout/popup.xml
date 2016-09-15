@@ -6,7 +6,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Author_Name: abc"
+        android:text="@string/authorname"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
         android:id="@+id/textView"
@@ -15,18 +16,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:text="Software Version Number: 1.1"
+        android:text="@string/softwareversion"
         android:id="@+id/textView2"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:text="Help Url: help@whatsfordinner.com"
+        android:text="@string/url"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal" />
 
@@ -35,11 +38,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:text="Copyright_Information: Copyright (c) 2016 What's for Dinner
-All Rights Reserved
-
-This product is protected by copyright and distributed under
-licenses restricting copying, distribution and decompilation."
+        android:text="@string/copyright"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

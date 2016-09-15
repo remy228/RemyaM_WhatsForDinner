@@ -3,8 +3,6 @@ package com.wearable.whatsfordinner;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,9 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText recipeInput ;
+    TextView recipeText;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +28,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        recipeInput =(EditText) findViewById(R.id.ingredientsInput);
+        recipeText = (TextView) findViewById(R.id.recipeText);
+        dbHandler = new MyDBHandler(this, null, null, 1);
+        printDatabase();
     }
+
+    //Add recipe item to database
+    public void submitButtonClicked(){
+        new_dish_activity recipe = new new_dish_activity(recipeInput.getText().toString());
+        dbHandler.addRecipe(recipe);
+        printDatabase();
+    }
+
+
+    // Print value to screen
+    public void printDatabase(){
+        String dbString = dbHandler.databaseToString();
+        recipeText.setText(dbString);
+    }
+
+
     public void printMsg(View view)
     {
 

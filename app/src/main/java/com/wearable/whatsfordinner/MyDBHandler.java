@@ -54,8 +54,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE" + TABLE_DISHES + "(" + COLUMN_RECIPENAME + "PRIMARY KEY" +
-                + COLUMN_ITEM1 + "TEXT" + COLUMN_ITEM2 + "TEXT" + COLUMN_ITEM3 + "TEXT" + COLUMN_ITEM4 + "TEXT" + COLUMN_ITEM5 + "TEXT" + COLUMN_ITEM6 + "TEXT" + COLUMN_ITEM7 + "TEXT" + COLUMN_ITEM8 + "TEXT" +COLUMN_ITEM9 + "TEXT" +COLUMN_ITEM10 + "TEXT" + ");";
+        String query = "CREATE TABLE" + TABLE_DISHES + "(" + COLUMN_RECIPENAME + "PRIMARY KEY" + COLUMN_ITEM1 + "TEXT" + COLUMN_ITEM2 + "TEXT" + COLUMN_ITEM3 + "TEXT" + COLUMN_ITEM4 + "TEXT" + COLUMN_ITEM5 + "TEXT" + COLUMN_ITEM6 + "TEXT" + COLUMN_ITEM7 + "TEXT" + COLUMN_ITEM8 + "TEXT" +COLUMN_ITEM9 + "TEXT" +COLUMN_ITEM10 + "TEXT" + ");";
         db.execSQL(query);
 
     }
@@ -67,14 +66,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
     //Adding a row to the database
-    public void addRecipe(RecipeItem recipe){
+    public void addRecipe(new_dish_activity recipe){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_RECIPENAME, recipe.get_recipename());
+        values.put(COLUMN_RECIPENAME, recipe.getRecipename());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_DISHES, null, values);
         db.close();
     }
-    //Print out the database as a strign
+    //Print out the database as a string
     public String databaseToString(){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();

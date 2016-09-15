@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:src="@drawable/top_banner"
-        android:onClick="printMsg"/>
+        android:onClick="printMsg"
+        android:contentDescription="@string/banner_icon"/>
 
 
   <GridLayout
@@ -37,7 +38,8 @@
           android:src="@drawable/new_meals"
           android:layout_column="0"
           android:onClick="viewMeals"
-          />
+          android:contentDescription="@string/meals_icon"/>
+
 
       <ImageView
           android:layout_width="wrap_content"
@@ -45,11 +47,15 @@
           android:id="@+id/imageView2"
           android:src="@drawable/new_recipes"
           android:paddingTop="40dp"
+          android:paddingStart="50dp"
           android:paddingLeft="50dp"
+          android:paddingEnd="70dp"
           android:paddingRight="70dp"
           android:layout_row="0"
           android:layout_column="1"
-          android:onClick="viewRecipes"/>
+          android:onClick="viewRecipes"
+          android:contentDescription="@string/recipe_icon"/>
+
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -60,18 +66,23 @@
           android:paddingRight="70dp"
           android:layout_row="1"
           android:layout_column="0"
-          android:onClick="viewGroceries"/>
+          android:onClick="viewGroceries"
+          android:contentDescription="@string/groceries_icon"/>
+
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:id="@+id/imageView4"
           android:src="@drawable/add_new"
           android:paddingTop="50dp"
+          android:paddingStart="50dp"
           android:paddingLeft="50dp"
+          android:paddingEnd="70dp"
           android:paddingRight="70dp"
           android:layout_row="1"
           android:layout_column="1"
-          android:onClick="addNewMeals"/>
+          android:onClick="addNewMeals"
+          android:contentDescription="@string/newmeals_icon"/>/>
   </GridLayout>
 
 </LinearLayout>
