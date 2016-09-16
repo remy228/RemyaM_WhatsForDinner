@@ -50,14 +50,26 @@ public class new_dish_activity extends AppCompatActivity {
             }
         });
 
+       /* submitButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String recipename = recipeInput.getText().toString();
+                myDBHandler = new MyDBHandler(context);
+                sqLiteDatabase = myDBHandler.getWritableDatabase();
+            //    myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
+                Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
+                myDBHandler.close();
+            }
+        });*/
 
-    }
+
+        }
 
     //Add Recipe
-    public void addRecipe(View view)
+   public void addRecipe(View view)
     {
         String recipename = recipeInput.getText().toString();
-        myDBHandler = new MyDBHandler(context);
+        myDBHandler = new MyDBHandler(this);
         sqLiteDatabase = myDBHandler.getWritableDatabase();
         myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
         Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
