@@ -31,7 +31,7 @@ public class Ingredients extends AppCompatActivity {
     ArrayList<String> m_listItems = new ArrayList<String>();
 
     String[] spinnerItems = new String[]{
-            "Cheese", "Bread"
+            "Select Ingredient","Cheese", "Bread"
     };
 
     String GETTEXT;
@@ -106,8 +106,10 @@ public class Ingredients extends AppCompatActivity {
                                        int pos, long arg3) {
 
                 VALUE = SPINNER.getSelectedItem().toString();
-                m_listItems.add(VALUE);
+                if(VALUE!="Select Ingredient") {
 
+                    m_listItems.add(VALUE);
+                }
             }
 
             public void onNothingSelected(AdapterView<?> arg0) {
