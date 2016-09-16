@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText recipeInput ;
     TextView recipeText;
-    MyDBHandler dbHandler;
+    public static MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +28,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recipeInput =(EditText) findViewById(R.id.ingredientsInput);
-        recipeText = (TextView) findViewById(R.id.recipeText);
+        //recipeInput =(EditText) findViewById(R.id.ingredientsInput);
+       // recipeText = (TextView) findViewById(R.id.recipeText);
         dbHandler = new MyDBHandler(this, null, null, 1);
-        printDatabase();
+       //printDatabase();
     }
 
+
+
     //Add recipe item to database
-    public void submitButtonClicked(){
+    public void submitButtonClicked(View view){
         new_dish_activity recipe = new new_dish_activity(recipeInput.getText().toString());
         dbHandler.addRecipe(recipe);
         printDatabase();
+
+
     }
 
 
@@ -46,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public void printDatabase(){
         String dbString = dbHandler.databaseToString();
         recipeText.setText(dbString);
+      //  recipeText.setText(" ");
     }
 
 
@@ -94,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("Recipes button on Click","testing activity 4");
         startActivity(intent);
     }
+
 
     public void viewMeals(View view)
     {

@@ -14,14 +14,12 @@
 
     <fragment
         android:name="com.wearable.whatsfordinner.LandscapeFragment"
-        android:id="@+id/landscape_fragment"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
 
     <fragment
         android:name="com.wearable.whatsfordinner.PortraitFragment"
-        android:id="@+id/portrait_fragment"
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>

@@ -12,47 +12,31 @@
     tools:context="com.wearable.whatsfordinner.Ingredients"
     tools:showIn="@layout/activity_ingredients">
 
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:hint="Enter Ingredients"
-        android:id="@+id/ingredientsInput"
-
+        android:id="@+id/editText1"
+        android:hint="Enter an Ingredient"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:autoText="true"
-/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:layout_toLeftOf="@+id/addIngredients"
-        android:layout_toEndOf="@+id/ingredientsInput"
-        android:layout_alignTop="@+id/ingredientsInput" />
+        android:layout_alignParentTop="true" />
 
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_below="@+id/ingredientsInput"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ingredientsInput"
-        android:layout_alignEnd="@+id/ingredientsInput" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
+       <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
-        android:id="@+id/addIngredients"
-        android:layout_alignTop="@+id/ingredientsInput"
+        android:id="@+id/button1"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/editText1" />
 
-
-
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner1"
+        android:layout_below="@+id/editText1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -10,7 +10,6 @@
         android:paddingStart="10dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -20,7 +19,6 @@
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
         android:text="@string/softwareversion"
-        android:id="@+id/textView2"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -30,7 +28,6 @@
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
         android:text="@string/url"
-        android:id="@+id/textView3"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -39,6 +36,5 @@
         android:paddingLeft="10dp"
         android:paddingBottom="10dp"
         android:text="@string/copyright"
-        android:id="@+id/textView4"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

@@ -14,7 +14,6 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
         android:src="@drawable/top_banner"
         android:onClick="printMsg"
         android:contentDescription="@string/banner_icon"/>
@@ -30,7 +29,6 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/imageView1"
           android:layout_row="0"
           android:paddingLeft="70dp"
           android:paddingTop="40dp"
@@ -44,7 +42,6 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/imageView2"
           android:src="@drawable/new_recipes"
           android:paddingTop="40dp"
           android:paddingStart="50dp"
@@ -59,7 +56,6 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/imageView3"
           android:src="@drawable/new_groceries"
           android:paddingLeft="70dp"
           android:paddingTop="40dp"
@@ -72,7 +68,6 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/imageView4"
           android:src="@drawable/add_new"
           android:paddingTop="50dp"
           android:paddingStart="50dp"

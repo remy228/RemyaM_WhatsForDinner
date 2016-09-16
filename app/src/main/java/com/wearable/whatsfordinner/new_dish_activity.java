@@ -12,12 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import com.wearable.whatsfordinner.MainActivity;
+
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class new_dish_activity extends AppCompatActivity {
 
+    public static new_dish_activity recipe;
     ImageView imageView;
     Button button;
     // new
@@ -41,10 +45,21 @@ public class new_dish_activity extends AppCompatActivity {
     Uri imageUri;
 
 
-    EditText recipeInput;
+
     Button submitButton;
+    EditText recipeInput ;
+    TextView recipeText;
+    public void submitButtonClicked(View view){
+        recipe = new new_dish_activity(recipeInput.getText().toString());
+        MainActivity.dbHandler.addRecipe(recipe);
+        printDatabase();
+    }
 
-
+    public void printDatabase(){
+        String dbString = MainActivity.dbHandler.databaseToString();
+        recipeText.setText(dbString);
+       // printDatabase();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +81,7 @@ public class new_dish_activity extends AppCompatActivity {
         //Storing Recipes in an Array
         recipeInput = (EditText)findViewById(R.id.ingredientsInput);
         submitButton = (Button)findViewById(R.id.submitButton);
+        recipeText = (TextView) findViewById(R.id.recipeText);
 
     }
     private void openGallery()

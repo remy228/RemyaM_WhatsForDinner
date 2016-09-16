@@ -5,56 +5,36 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import android.widget.Toast;
 
 public class Ingredients extends AppCompatActivity {
 
-    public Ingredients(){
 
-    }
+    Spinner SPINNER;
+    Button ADD;
+    EditText EDITTEXT;
+    //  TextView textview;
+    String[] spinnerItems = new String[]{
+            "Cheese", "Bread"
+    };
 
-    // Adding Ingredients Array
-    Button save;
-    ArrayList<String> addIngredientsArray = new ArrayList<String>();
-    Spinner spinner;
-    ArrayAdapter<CharSequence> dataadapter;
+    String GETTEXT;
+    List<String> stringlist;
+    ArrayAdapter<String> arrayadapter;
 
-
-
-    EditText txt;
-    ListView show;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredients);
-        spinner = (Spinner)findViewById(R.id.spinner);
-        dataadapter = ArrayAdapter.createFromResource(this,R.array.addIngredientsArray,android.R.layout.simple_spinner_item);
-        dataadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataadapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               // show.setAdapter(dataadapter);
-                String tex=parent.getItemAtPosition(position).toString();
-                Log.d("Selected", tex);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -66,36 +46,60 @@ public class Ingredients extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        SPINNER = (Spinner)findViewById(R.id.spinner1);
+        ADD = (Button)findViewById(R.id.button1);
+        EDITTEXT = (EditText)findViewById(R.id.editText1);
 
+        stringlist = new ArrayList<>(Arrays.asList(spinnerItems));
 
-        //Storing Ingredients in an Array
-        txt = (EditText)findViewById(R.id.ingredientsInput);
-        save = (Button)findViewById(R.id.addIngredients);
-        show = (ListView)findViewById(R.id.listView);
+        arrayadapter = new ArrayAdapter<String>(Ingredients.this,R.layout.textview,stringlist );
 
-        save.setOnClickListener(new View.OnClickListener(){
+        arrayadapter.setDropDownViewResource(R.layout.textview);
+
+        SPINNER.setAdapter(arrayadapter);
+
+        ADD.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view){
-                String getInput = txt.getText().toString();
-                {
-                    addIngredientsArray.add(getInput);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(Ingredients.this, android.R.layout.simple_list_item_1,addIngredientsArray);
-                    //setAdapter(adapter);
-                    show.setAdapter(adapter);
-                    ((EditText)findViewById(R.id.ingredientsInput)).setText(" ");
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
 
-                }
-              }
+                GETTEXT = EDITTEXT.getText().toString();
 
+                stringlist.add(GETTEXT);
 
-            });
+                arrayadapter.notifyDataSetChanged();
+
+                Toast.makeText(Ingredients.this, "Item Added", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
-    public ArrayList<String> getList() {
-        return addIngredientsArray;
+
+        return super.onOptionsItemSelected(item);
     }
-    }
+}
+
+
+
+
 
 

@@ -1,18 +1,17 @@
 package com.wearable.whatsfordinner;
-
-import android.content.ClipData;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "WhatsForDinner.db";
-    public static final String TABLE_DISHES = "dishes";
-    public static final String COLUMN_RECIPENAME = "recipename";
+    public static final String TABLE_DISHES = " dishes ";
+    public static final String COLUMN_RECIPENAME = "recipename ";
     //public static final String COLUMN_IMAGE = "image";
     public static final String COLUMN_ITEM1 = "item1";
     //public static final String COLUMN_QUANTITY1= "quantity1";
@@ -51,24 +50,27 @@ public class MyDBHandler extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE" + TABLE_DISHES + "(" + COLUMN_RECIPENAME + "PRIMARY KEY" + COLUMN_ITEM1 + "TEXT" + COLUMN_ITEM2 + "TEXT" + COLUMN_ITEM3 + "TEXT" + COLUMN_ITEM4 + "TEXT" + COLUMN_ITEM5 + "TEXT" + COLUMN_ITEM6 + "TEXT" + COLUMN_ITEM7 + "TEXT" + COLUMN_ITEM8 + "TEXT" +COLUMN_ITEM9 + "TEXT" +COLUMN_ITEM10 + "TEXT" + ");";
+
+           // String query = "CREATE TABLE IF NOT EXISTS " + "dishes" + "(" + COLUMN_RECIPENAME + " TEXT " + ")";
+       String query = "CREATE TABLE IF NOT EXISTS" + "dishes" + "(" + COLUMN_RECIPENAME + " TEXT, " + COLUMN_ITEM1 + " TEXT, " + COLUMN_ITEM2 + " TEXT, " + COLUMN_ITEM3 + " TEXT, " + COLUMN_ITEM4 + " TEXT, " + COLUMN_ITEM5 + " TEXT, " + COLUMN_ITEM6 + " TEXT, " + COLUMN_ITEM7 + " TEXT, " + COLUMN_ITEM8 + " TEXT, " + COLUMN_ITEM9 + " TEXT, " + COLUMN_ITEM10 + " TEXT " + ")";
+        Log.i("yashas",query);
         db.execSQL(query);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS" + TABLE_DISHES);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISHES);
             onCreate(db);
     }
+
 
     //Adding a row to the database
     public void addRecipe(new_dish_activity recipe){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_RECIPENAME, recipe.getRecipename());
+        values.put(COLUMN_RECIPENAME, new_dish_activity.recipe.getRecipename());
         SQLiteDatabase db = getWritableDatabase();
         db.insert(TABLE_DISHES, null, values);
         db.close();
@@ -77,11 +79,15 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public String databaseToString(){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_DISHES + "WHERE 1";
+        String query = " SELECT * FROM " + "dishes " + " WHERE 1 = 1 ";
+        Log.i("test query",query);
+
 
         //Cursor point to a location in your results
         Cursor c = db.rawQuery(query,null);
         c.moveToFirst();
+        c.close();
+
 
         while(!c.isAfterLast()){
             if(c.getString(c.getColumnIndex("recipename"))!=null){

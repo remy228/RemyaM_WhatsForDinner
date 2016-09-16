@@ -21,16 +21,9 @@
     <string name="url">Help Url: help@whatsfordinner.com</string>
     <string name ="submit">Submit</string>
     <string name ="photo">Choose Photo</string>
-    <string name ="addIngredients">Add Ingredients</string>
     <string name="copyright">"Copyright_Information: Copyright (c) 2016 What's for Dinner
 All Rights Reserved
 
 This product is protected by copyright and distributed under
 licenses restricting copying, distribution and decompilation."</string>
-    <string-array name="addIngredientsArray">
-        <item>Tomatoes</item>
-        <item>Lettuce</item>
-
-
-    </string-array>
 </resources>
