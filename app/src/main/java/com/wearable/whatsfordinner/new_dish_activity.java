@@ -1,6 +1,8 @@
 package com.wearable.whatsfordinner;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import com.wearable.whatsfordinner.MainActivity;
 
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,45 +22,18 @@ import java.util.ArrayList;
 
 public class new_dish_activity extends AppCompatActivity {
 
-    public static new_dish_activity recipe;
+
     ImageView imageView;
     Button button;
-    // new
-    private String recipename;
-
-    public new_dish_activity(){
-
-    }
-
-    public new_dish_activity(String recipename) {this.recipename = recipename;}
-
-    public void setRecipename(String recipename) {
-        this.recipename = recipename;
-    }
-
-    public String getRecipename() {
-        return recipename;
-    }
-
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-
-
-
     Button submitButton;
     EditText recipeInput ;
     TextView recipeText;
-    public void submitButtonClicked(View view){
-        recipe = new new_dish_activity(recipeInput.getText().toString());
-        MainActivity.dbHandler.addRecipe(recipe);
-        printDatabase();
-    }
+    Context context;
+    MyDBHandler myDBHandler;
+    SQLiteDatabase sqLiteDatabase;
 
-    public void printDatabase(){
-        String dbString = MainActivity.dbHandler.databaseToString();
-        recipeText.setText(dbString);
-       // printDatabase();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +41,9 @@ public class new_dish_activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        recipeInput = (EditText)findViewById(R.id.ingredientsInput);
+        submitButton = (Button)findViewById(R.id.submitButton);
+        recipeText = (TextView) findViewById(R.id.recipeText);
         imageView = (ImageView)findViewById(R.id.imageView);
         button = (Button)findViewById(R.id.photobutton);
 
@@ -78,12 +55,21 @@ public class new_dish_activity extends AppCompatActivity {
         });
 
 
-        //Storing Recipes in an Array
-        recipeInput = (EditText)findViewById(R.id.ingredientsInput);
-        submitButton = (Button)findViewById(R.id.submitButton);
-        recipeText = (TextView) findViewById(R.id.recipeText);
+    }
+
+    //Add Recipe
+    public void addRecipe(View view)
+    {
+        String recipename = recipeInput.getText().toString();
+        myDBHandler = new MyDBHandler(context);
+        sqLiteDatabase = myDBHandler.getWritableDatabase();
+        myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
+        Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
+        myDBHandler.close();
 
     }
+
+    //Choose image from gallery
     private void openGallery()
     {
         Log.i("Image add on click","Test works");
@@ -99,6 +85,7 @@ public class new_dish_activity extends AppCompatActivity {
         }
     }
 
+    //Move to Add Ingredients Activity
     public void addIngredients(View view)
     {
         Intent intent = new Intent(this,Ingredients.class);
@@ -106,6 +93,7 @@ public class new_dish_activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Move to Add Directions Activity
     public void addDirections(View view)
     {
         Intent intent = new Intent(this,Cooking_Directions.class);
