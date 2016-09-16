@@ -41,7 +41,7 @@ public class RecipeContract {
         public static final String COLUMN_ITEM10 = "item10";
        // public static final String COLUMN_QUANTITY10= "quantity10";
        // public static final String COLUMN_UNIT10 = "unit10";
-*/
+
 
     }
 }
