@@ -13,12 +13,14 @@
     tools:showIn="@layout/activity_recipes_screen">
 
     <fragment
+        android:id="@+id/landscape"
         android:name="com.wearable.whatsfordinner.LandscapeFragment"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
 
     <fragment
+        android:id="@+id/portrait"
         android:name="com.wearable.whatsfordinner.PortraitFragment"
         android:layout_weight="2"
         android:layout_width="0dp"

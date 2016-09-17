@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_Remya.db";
+    public static final String DATABASE_NAME = "WhatsForDinner_Application.db";
     public static final int DATABASE_VERSION = 1;
    /* private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+ "("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT,"+
@@ -18,8 +18,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM7+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM8+" TEXT,"+
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM9+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM10+" TEXT);";
 */
-   private static final String CREATE_QUERY =
-           "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+ "("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT);";
+   private static final String CREATE_QUERY = "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+"("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT);";
 
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,7 +43,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + RecipeContract.NewRecipeInfo.TABLE_NAME);
+        onCreate(db);
     }
 
 
