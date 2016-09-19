@@ -8,14 +8,15 @@ import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_App.db";
+    public static final String DATABASE_NAME = "WhatsForDinner_1.db";
     public static final int DATABASE_VERSION = 1;
    private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM1 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM2 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM3 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM4 + " TEXT, " +
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM5 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM6 + " TEXT, " +
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM7 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM8 + " TEXT, " +
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM9 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM10 + " TEXT);";
+                    RecipeContract.NewRecipeInfo.COLUMN_ITEM9 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM10 + " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_DIRECTIONS + " TEXT);";
 
  //  private static final String CREATE_QUERY = "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+"("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT);";
 
@@ -81,6 +82,16 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
         Log.e("DATABASE OPERATIONS:" , "Ingredients have been inserted");
     }
+
+
+    // Adding Directions to DB
+    public void textViewtoDB(String data, SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_DIRECTIONS,data);
+        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
+        Log.e("DATABASE OPERATIONS:" , "Directions have been inserted");
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

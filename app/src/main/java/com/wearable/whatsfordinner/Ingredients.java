@@ -1,14 +1,10 @@
 package com.wearable.whatsfordinner;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +29,7 @@ public class Ingredients extends AppCompatActivity {
     Button doneButton;
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
-   // ArrayAdapter<String> m_adapter;
+
     ArrayList<String> m_listItems = new ArrayList<String>();
 
 
@@ -137,22 +133,6 @@ public class Ingredients extends AppCompatActivity {
                 myDBHandler.close();
             }
         });
-
-
-
-            //Ends here
-              /*  .setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                String recipename = lv.getText().toString();
-                myDBHandler = new MyDBHandler(getApplicationContext());
-                sqLiteDatabase = myDBHandler.getWritableDatabase();
-                myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
-                Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
-                myDBHandler.close();
-            }
-        });*/
-
 
     }
 

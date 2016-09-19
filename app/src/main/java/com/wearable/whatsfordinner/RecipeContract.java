@@ -19,5 +19,6 @@ public class RecipeContract {
         public static final String COLUMN_ITEM8 = "item8";
         public static final String COLUMN_ITEM9 = "item9";
         public static final String COLUMN_ITEM10 = "item10";
+        public static final String COLUMN_DIRECTIONS = "directions";
     }
 }
