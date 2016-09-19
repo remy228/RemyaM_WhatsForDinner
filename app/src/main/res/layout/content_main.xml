@@ -36,7 +36,8 @@
           android:src="@drawable/new_meals"
           android:layout_column="0"
           android:onClick="viewMeals"
-          android:contentDescription="@string/meals_icon"/>
+          android:contentDescription="@string/meals_icon"
+          android:id="@+id/viewmeals" />
 
 
       <ImageView
@@ -51,7 +52,8 @@
           android:layout_row="0"
           android:layout_column="1"
           android:onClick="viewRecipes"
-          android:contentDescription="@string/recipe_icon"/>
+          android:contentDescription="@string/recipe_icon"
+          android:id="@+id/viewrecipes" />
 
       <ImageView
           android:layout_width="wrap_content"
@@ -63,7 +65,8 @@
           android:layout_row="1"
           android:layout_column="0"
           android:onClick="viewGroceries"
-          android:contentDescription="@string/groceries_icon"/>
+          android:contentDescription="@string/groceries_icon"
+          android:id="@+id/viewgroceries" />
 
       <ImageView
           android:layout_width="wrap_content"
@@ -77,7 +80,8 @@
           android:layout_row="1"
           android:layout_column="1"
           android:onClick="addNewMeals"
-          android:contentDescription="@string/newmeals_icon"/>/>
+          android:contentDescription="@string/newmeals_icon"
+          android:id="@+id/viewnewmeals" />/>
   </GridLayout>
 
 </LinearLayout>

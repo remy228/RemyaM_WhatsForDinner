@@ -10,4 +10,10 @@
         android:layout_height="match_parent"
         android:text="@string/landscape_text" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="453dp"
+        android:id="@+id/display_listview"
+        android:layout_gravity="right|center_vertical" />
+
 </FrameLayout>

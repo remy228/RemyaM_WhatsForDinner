@@ -10,11 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class new_dish_activity extends AppCompatActivity {
 
@@ -30,12 +35,15 @@ public class new_dish_activity extends AppCompatActivity {
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
 
+    ArrayList<String> recipesarray = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_dish_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         recipeInput = (EditText)findViewById(R.id.ingredientsInput);
         submitButton = (Button)findViewById(R.id.submitButton);
@@ -49,16 +57,30 @@ public class new_dish_activity extends AppCompatActivity {
                 openGallery();
             }
         });
-        String recipename;
+
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String recipename = recipeInput.getText().toString();
-                myDBHandler = new MyDBHandler(getApplicationContext());
-                sqLiteDatabase = myDBHandler.getWritableDatabase();
-                myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
-                Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
-                myDBHandler.close();
+                if(recipesarray.contains(recipename))
+                {
+                    Toast.makeText(getBaseContext(),"Recipe already exists!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    recipesarray.add(recipename);
+                    myDBHandler = new MyDBHandler(getApplicationContext());
+                    sqLiteDatabase = myDBHandler.getWritableDatabase();
+                    myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
+                    Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
+                    myDBHandler.close();
+
+                }
+                //Show recipesarray elements in a ListView shown in portrait and landscape fragments. id: display_listview
+
+
+
+                //
+
             }
         });
 

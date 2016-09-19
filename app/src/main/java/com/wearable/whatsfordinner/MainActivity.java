@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Recipes_Activity.class);
         Log.i("Recipes button on Click","testing activity 3");
         startActivity(intent);
+
+
     }
 
     public void viewGroceries(View view)
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
