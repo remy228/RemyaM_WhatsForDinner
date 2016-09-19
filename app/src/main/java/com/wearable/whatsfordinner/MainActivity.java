@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,meals_activity.class);
         Log.i("Recipes button on Click","testing activity 5");
         startActivity(intent);
+
     }
 
 

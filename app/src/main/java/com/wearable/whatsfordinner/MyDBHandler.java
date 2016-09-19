@@ -8,17 +8,16 @@ import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_Application.db";
+    public static final String DATABASE_NAME = "WhatsForDinner_App.db";
     public static final int DATABASE_VERSION = 1;
-   /* private static final String CREATE_QUERY =
-            "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+ "("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT,"+
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM1+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM2+" TEXT,"+
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM3+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM4+" TEXT,"+
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM5+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM6+" TEXT,"+
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM7+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM8+" TEXT,"+
-                    RecipeContract.NewRecipeInfo.COLUMN_ITEM9+" TEXT,"+ RecipeContract.NewRecipeInfo.COLUMN_ITEM10+" TEXT);";
-*/
-   private static final String CREATE_QUERY = "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+"("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT);";
+   private static final String CREATE_QUERY =
+            "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_ITEM1 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM2 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM3 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM4 + " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_ITEM5 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM6 + " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_ITEM7 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM8 + " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_ITEM9 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM10 + " TEXT);";
+
+ //  private static final String CREATE_QUERY = "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME+"("+ RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME+" TEXT);";
 
     public MyDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,14 +30,56 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_QUERY);
         Log.e("DATABASE OPERATIONS:" , "Table has been created");
+        Log.i("Tag", CREATE_QUERY);
 
     }
 
+    //Adding Recipe to Database
     public void addRecipeInformation(String recipe, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME,recipe);
         db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
         Log.e("DATABASE OPERATIONS:" , "Recipe has been inserted");
+    }
+
+
+    //Adding Ingredients to Database
+    public void listViewtoDB(String item, int pos, SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        if(pos==0) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM1, item);
+        }
+        else if(pos==1) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM2, item);
+        }
+        else if(pos==2) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM3, item);
+        }
+        else if(pos==4) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM4, item);
+        }
+        else if(pos==5) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM6, item);
+        }
+        else if(pos==6) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM7, item);
+        }
+        else if(pos==7) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM8, item);
+        }
+        else if(pos==8) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM9, item);
+        }
+        else if(pos==9) {
+            contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM10, item);
+        }
+        else{
+            //Don't insert anything
+            Log.i("Tag","Cannot insert");
+        }
+       // db.insertWithOnConflict(RecipeContract.NewRecipeInfo.TABLE_NAME, null,contentValues,SQLiteDatabase.CONFLICT_REPLACE);
+        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
+        Log.e("DATABASE OPERATIONS:" , "Ingredients have been inserted");
     }
 
     @Override

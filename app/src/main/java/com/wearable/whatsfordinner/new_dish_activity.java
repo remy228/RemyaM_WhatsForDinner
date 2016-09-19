@@ -49,8 +49,8 @@ public class new_dish_activity extends AppCompatActivity {
                 openGallery();
             }
         });
-
-       submitButton.setOnClickListener(new View.OnClickListener(){
+        String recipename;
+        submitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String recipename = recipeInput.getText().toString();

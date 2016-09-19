@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 import android.widget.Toast;
 
+
+
 public class Ingredients extends AppCompatActivity {
 
     Spinner SPINNER;
@@ -27,11 +30,15 @@ public class Ingredients extends AppCompatActivity {
     EditText EDITTEXT;
     ListView lv;
     String VALUE;
+    Button doneButton;
+    MyDBHandler myDBHandler;
+    SQLiteDatabase sqLiteDatabase;
    // ArrayAdapter<String> m_adapter;
     ArrayList<String> m_listItems = new ArrayList<String>();
 
+
     String[] spinnerItems = new String[]{
-            "Select Ingredient","Cheese", "Bread"
+            "Select Ingredient","Cheese", "Bread",
     };
 
     String GETTEXT;
@@ -44,19 +51,11 @@ public class Ingredients extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         SPINNER = (Spinner)findViewById(R.id.spinner1);
         ADD = (Button)findViewById(R.id.button1);
         EDITTEXT = (EditText)findViewById(R.id.editText1);
         lv = (ListView) findViewById(R.id.listView1);
+        doneButton = (Button)findViewById(R.id.doneButton);
 
         stringlist = new ArrayList<>(Arrays.asList(spinnerItems));
 
@@ -118,8 +117,41 @@ public class Ingredients extends AppCompatActivity {
         });
 
 
-            //Ends here
+        // Calling the listViewtoDB function on click of Done button
 
+        doneButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                String value=null;
+                int i=0;
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getWritableDatabase();
+                for ( i=0;i<arrayadapter.getCount();i++){
+                    value = arrayadapter.getItem(i);
+                    Log.i("ListView Items",value);
+                    myDBHandler.listViewtoDB(value,i,sqLiteDatabase);
+                }
+
+                Toast.makeText(getBaseContext(),"Ingredients Saved", Toast.LENGTH_LONG).show();
+                myDBHandler.close();
+            }
+        });
+
+
+
+            //Ends here
+              /*  .setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String recipename = lv.getText().toString();
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getWritableDatabase();
+                myDBHandler.addRecipeInformation(recipename,sqLiteDatabase);
+                Toast.makeText(getBaseContext(),"Recipe Saved", Toast.LENGTH_LONG).show();
+                myDBHandler.close();
+            }
+        });*/
 
 
     }
