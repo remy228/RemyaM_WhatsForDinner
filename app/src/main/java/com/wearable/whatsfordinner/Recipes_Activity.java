@@ -11,17 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-
 import java.util.ArrayList;
+import java.util.Arrays;
+import com.wearable.whatsfordinner.new_dish_activity;
 
 public class Recipes_Activity extends AppCompatActivity {
 
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
     ListView recipelistview;
-    ArrayAdapter<String> arrayadapter1;
-    ArrayList<String> recipearray = new ArrayList<>();
+
+    ArrayList<String> recipearray2 = new ArrayList<>();
 
 
 
@@ -43,34 +43,57 @@ public class Recipes_Activity extends AppCompatActivity {
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LandscapeFragment landscapeFragment = new LandscapeFragment();
             fragmentTransaction.replace(android.R.id.content, landscapeFragment);
+            storeRecipes();
         } else {
             PortraitFragment portraitFragment = new PortraitFragment();
             fragmentTransaction.replace(android.R.id.content, portraitFragment);
+            storeRecipes();
         }
         fragmentTransaction.commit();
 
         //New
 
         //Ends
-        storeRecipes();
+
 
     }
 
    public void storeRecipes(){
 
-
-        myDBHandler = new MyDBHandler(getApplicationContext());
+       myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getReadableDatabase();
-        Cursor cur = sqLiteDatabase.rawQuery("SELECT " + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME, new String[] {});
-        while (cur.moveToNext()) {
-            String uname = cur.getString(cur.getColumnIndex( RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME));
-            recipearray.add(uname);
-            Log.i("Recipe Array","Recipes Added to array");
+       Cursor cur = sqLiteDatabase.rawQuery("SELECT " + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME,null );
+            try {
+            while (cur.moveToNext()) {
+                String uname = cur.getString(cur.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME ));
+                recipearray2.add(uname);
+                Log.i("Recipe Array", "Recipes Added to array");
 
-        }
-       arrayadapter1 = new ArrayAdapter<String>(Recipes_Activity.this,android.R.layout.simple_list_item_1, recipearray);
-       recipelistview.setAdapter(arrayadapter1);
-    }
+                }
+
+            }
+              finally
+                {
+                    cur.close();
+                }
+
+        ArrayAdapter<String> arrayadapter1 = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1, recipearray2);
+        recipelistview.setAdapter(arrayadapter1);
+
+
+       for (int i =0 ; i< recipearray2.size(); i++)
+       {
+           if(recipearray2.toString()!=null) {
+               System.out.println("Array Values: " + recipearray2.get(i));
+           }
+           else
+           {
+
+           }
+       }
+
+
+   }
 
         }
 

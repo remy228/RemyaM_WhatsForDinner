@@ -34,6 +34,7 @@ public class new_dish_activity extends AppCompatActivity {
     Context context;
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
+    Intent submitbuttonintent;
 
     ArrayList<String> recipesarray = new ArrayList<>();
 
@@ -51,6 +52,11 @@ public class new_dish_activity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.imageView);
         button = (Button)findViewById(R.id.photobutton);
 
+        //Send recipe intent
+        submitbuttonintent = new Intent(new_dish_activity.this, Ingredients.class);
+
+
+
         button.setOnClickListener(new View.OnClickListener(){
             @Override
                     public void onClick(View v){
@@ -62,6 +68,7 @@ public class new_dish_activity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 String recipename = recipeInput.getText().toString();
+
                 if(recipesarray.contains(recipename))
                 {
                     Toast.makeText(getBaseContext(),"Recipe already exists!", Toast.LENGTH_LONG).show();
@@ -73,13 +80,12 @@ public class new_dish_activity extends AppCompatActivity {
                     myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
                     Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
                     myDBHandler.close();
+                    //Send to Ingredients activity
+                    submitbuttonintent.putExtra("Recipe",recipename);
+                    startActivity(submitbuttonintent);
 
                 }
-                //Show recipesarray elements in a ListView shown in portrait and landscape fragments. id: display_listview
 
-
-
-                //
 
             }
         });

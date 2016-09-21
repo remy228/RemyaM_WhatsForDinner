@@ -1,15 +1,14 @@
 package com.wearable.whatsfordinner;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_1.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "WhatsForDinner_3.db";
+    public static final int DATABASE_VERSION = 3;
    private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM1 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM2 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM3 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM4 + " TEXT, " +
@@ -45,7 +44,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
 
     //Adding Ingredients to Database
-    public void listViewtoDB(String item, int pos, SQLiteDatabase db){
+    public void listViewtoDB(String item, int pos, String recipevalue, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         if(pos==0) {
             contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_ITEM1, item);
@@ -79,16 +78,17 @@ public class MyDBHandler extends SQLiteOpenHelper {
             Log.i("Tag","Cannot insert");
         }
        // db.insertWithOnConflict(RecipeContract.NewRecipeInfo.TABLE_NAME, null,contentValues,SQLiteDatabase.CONFLICT_REPLACE);
-        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
+        db.update(RecipeContract.NewRecipeInfo.TABLE_NAME,contentValues,RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME +  "='" + recipevalue + "'",null);
         Log.e("DATABASE OPERATIONS:" , "Ingredients have been inserted");
     }
 
 
     // Adding Directions to DB
-    public void textViewtoDB(String data, SQLiteDatabase db){
+    public void textViewtoDB(String data, String recipevalue,SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
         contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_DIRECTIONS,data);
-        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
+        db.update(RecipeContract.NewRecipeInfo.TABLE_NAME,contentValues,RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME +  "='" + recipevalue + "'",null);
+       // db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME,null,contentValues);
         Log.e("DATABASE OPERATIONS:" , "Directions have been inserted");
     }
 

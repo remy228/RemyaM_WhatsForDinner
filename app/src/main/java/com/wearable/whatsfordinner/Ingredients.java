@@ -1,5 +1,6 @@
 package com.wearable.whatsfordinner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +31,7 @@ public class Ingredients extends AppCompatActivity {
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
 
+
     ArrayList<String> m_listItems = new ArrayList<String>();
 
 
@@ -40,6 +42,8 @@ public class Ingredients extends AppCompatActivity {
     String GETTEXT;
     List<String> stringlist;
     ArrayAdapter<String> arrayadapter;
+    Intent submitbuttonintent = getIntent();
+    Intent donebuttonintent;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,16 @@ public class Ingredients extends AppCompatActivity {
         arrayadapter = new ArrayAdapter<>(Ingredients.this,R.layout.textview,stringlist );
 
         arrayadapter.setDropDownViewResource(R.layout.textview);
+
+        //Intent for receiving Recipe name
+        submitbuttonintent = new Intent(this, Ingredients.class);
+
+        Bundle extras=getIntent().getExtras();
+        final String recipe_name = extras.getString("Recipe");
+        System.out.println("Intent test:" + recipe_name);
+
+        //Intent for sending Recipe name
+        donebuttonintent = new Intent(Ingredients.this, Cooking_Directions.class);
 
         // spinner item select listener
 
@@ -89,6 +103,7 @@ public class Ingredients extends AppCompatActivity {
                             m_listItems.add(GETTEXT);
 
                             arrayadapter.notifyDataSetChanged();
+
 
                         }
                     }
@@ -126,11 +141,15 @@ public class Ingredients extends AppCompatActivity {
                 for ( i=0;i<arrayadapter.getCount();i++){
                     value = arrayadapter.getItem(i);
                     Log.i("ListView Items",value);
-                    myDBHandler.listViewtoDB(value,i,sqLiteDatabase);
+                   myDBHandler.listViewtoDB(value,i,recipe_name,sqLiteDatabase);
                 }
 
                 Toast.makeText(getBaseContext(),"Ingredients Saved", Toast.LENGTH_LONG).show();
                 myDBHandler.close();
+                donebuttonintent.putExtra("Recipe",recipe_name);
+                startActivity(donebuttonintent);
+
+
             }
         });
 

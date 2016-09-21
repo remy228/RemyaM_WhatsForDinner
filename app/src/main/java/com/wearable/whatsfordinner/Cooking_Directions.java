@@ -1,5 +1,6 @@
 package com.wearable.whatsfordinner;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class Cooking_Directions extends AppCompatActivity {
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
     TextView tv;
+    Intent donebuttonintent = getIntent();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,12 @@ public class Cooking_Directions extends AppCompatActivity {
         setSupportActionBar(toolbar);
         directions = (Button)findViewById(R.id.directionadd);
         tv = (TextView)findViewById(R.id.directions);
+
+       //Receiving recipe name
+        Bundle extras=getIntent().getExtras();
+        final String recipename2 = extras.getString("Recipe");
+
+        System.out.println("Intent test2:" + recipename2);
 
         directions.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -36,7 +44,7 @@ public class Cooking_Directions extends AppCompatActivity {
                 sqLiteDatabase = myDBHandler.getWritableDatabase();
                 String a = tv.getText().toString();
                 Log.i("TextView Items",a);
-                    myDBHandler.textViewtoDB(a,sqLiteDatabase);
+                    myDBHandler.textViewtoDB(a,recipename2,sqLiteDatabase);
 
                 Toast.makeText(getBaseContext(),"Directions Saved", Toast.LENGTH_LONG).show();
                 myDBHandler.close();
