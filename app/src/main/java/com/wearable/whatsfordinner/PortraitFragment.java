@@ -25,8 +25,7 @@ public class PortraitFragment extends android.app.Fragment {
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
     ListView recipelistview;
-
-    ArrayList<String> recipearray3 = new ArrayList<>();
+    ArrayList<String> recipearray = new ArrayList<>();
 
 
     public PortraitFragment() {
@@ -48,7 +47,7 @@ public class PortraitFragment extends android.app.Fragment {
         try {
             while (cur.moveToNext()) {
                 String uname = cur.getString(cur.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME));
-                recipearray3.add(uname);
+                recipearray.add(uname);
                 Log.i("Recipe Array", "Recipes Added to array");
 
             }
@@ -57,11 +56,11 @@ public class PortraitFragment extends android.app.Fragment {
             cur.close();
         }
 
-        for (int i = 0; i < recipearray3.size(); i++) {
-            if (recipearray3.toString() != null) {
-                if (!recipearray3.toString().isEmpty()) {
-                    System.out.println("Array Values: " + recipearray3.get(i));
-                    ArrayAdapter<String> arrayadapter1 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, recipearray3);
+        for (int i = 0; i < recipearray.size(); i++) {
+            if (recipearray.toString() != null) {
+                if (!recipearray.toString().isEmpty()) {
+                    System.out.println("Array Values: " + recipearray.get(i));
+                    ArrayAdapter<String> arrayadapter1 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, recipearray);
                     recipelistview.setAdapter(arrayadapter1);
                     arrayadapter1.notifyDataSetChanged();
 

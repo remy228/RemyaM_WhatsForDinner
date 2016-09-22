@@ -87,7 +87,8 @@ public class Ingredients extends AppCompatActivity {
 
                 GETTEXT = EDITTEXT.getText().toString();
                 EDITTEXT.setText("");
-                stringlist.add(GETTEXT);
+                    stringlist.add(GETTEXT);
+
 
                 arrayadapter.notifyDataSetChanged();
 

@@ -8,7 +8,7 @@ import android.util.Log;
 public class MyDBHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "WhatsForDinner_3.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
    private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
                     RecipeContract.NewRecipeInfo.COLUMN_ITEM1 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM2 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM3 + " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_ITEM4 + " TEXT, " +
