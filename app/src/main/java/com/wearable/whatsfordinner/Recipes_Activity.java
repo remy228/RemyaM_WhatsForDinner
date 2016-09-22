@@ -17,15 +17,11 @@ import com.wearable.whatsfordinner.new_dish_activity;
 
 public class Recipes_Activity extends AppCompatActivity {
 
-    MyDBHandler myDBHandler;
+    /*MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
     ListView recipelistview;
-
-    ArrayList<String> recipearray2 = new ArrayList<>();
-
-
-
-    @Override
+*/
+       @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -34,7 +30,7 @@ public class Recipes_Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        recipelistview = (ListView) findViewById(R.id.display_listview);
+     //   recipelistview = (ListView) findViewById(R.id.display_listview);
 
         Configuration config = getResources().getConfiguration();
         FragmentManager fragmentManager = getFragmentManager();
@@ -43,11 +39,11 @@ public class Recipes_Activity extends AppCompatActivity {
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LandscapeFragment landscapeFragment = new LandscapeFragment();
             fragmentTransaction.replace(android.R.id.content, landscapeFragment);
-            storeRecipes();
+          //  storeRecipes();
         } else {
             PortraitFragment portraitFragment = new PortraitFragment();
             fragmentTransaction.replace(android.R.id.content, portraitFragment);
-            storeRecipes();
+          //  storeRecipes();
         }
         fragmentTransaction.commit();
 
@@ -58,7 +54,7 @@ public class Recipes_Activity extends AppCompatActivity {
 
     }
 
-   public void storeRecipes(){
+   /*public void storeRecipes(){
 
        myDBHandler = new MyDBHandler(getApplicationContext());
         sqLiteDatabase = myDBHandler.getReadableDatabase();
@@ -93,7 +89,7 @@ public class Recipes_Activity extends AppCompatActivity {
        }
 
 
-   }
+   }*/
 
         }
 
