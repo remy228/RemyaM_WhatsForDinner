@@ -74,6 +74,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wearable.whatsfordinner.new_dish_activity" />
         </activity>
+        <activity
+            android:name=".Nutrition_Manager"
+            android:label="@string/title_activity_nutrition__manager"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wearable.whatsfordinner.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

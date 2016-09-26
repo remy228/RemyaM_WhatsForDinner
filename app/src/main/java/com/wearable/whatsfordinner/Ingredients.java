@@ -23,10 +23,15 @@ import android.widget.Toast;
 public class Ingredients extends AppCompatActivity {
 
     Spinner SPINNER;
+    Spinner SPINNER1;
+    Spinner SPINNER2;
     Button ADD;
     EditText EDITTEXT;
     ListView lv;
     String VALUE;
+    String values;
+    String value_quant;
+    String value_unit;
     Button doneButton;
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
@@ -39,9 +44,20 @@ public class Ingredients extends AppCompatActivity {
             "Select Ingredient","Cheese", "Bread",
     };
 
+    String[] quantityItems = new String[]{
+            "1","2","3","4","5","6","7","8","9","10"};
+
+    String[] unitItems = new String[]{
+            "pieces","grams","lbs","teaspoons","tablespoons","cup","pinch","nos","ounces","pints"};
+
     String GETTEXT;
     List<String> stringlist;
+    List<String> quantitylist;
+    List<String> unitlist;
     ArrayAdapter<String> arrayadapter;
+    ArrayAdapter<String> arrayadapter1;
+    ArrayAdapter<String> arrayadapter2;
+
     Intent submitbuttonintent = getIntent();
     Intent donebuttonintent;
 
@@ -52,16 +68,25 @@ public class Ingredients extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         SPINNER = (Spinner)findViewById(R.id.spinner1);
+        SPINNER1 = (Spinner)findViewById(R.id.spinner2);
+        SPINNER2 = (Spinner)findViewById(R.id.spinner3);
+
         ADD = (Button)findViewById(R.id.button1);
         EDITTEXT = (EditText)findViewById(R.id.editText1);
         lv = (ListView) findViewById(R.id.listView1);
         doneButton = (Button)findViewById(R.id.doneButton);
 
         stringlist = new ArrayList<>(Arrays.asList(spinnerItems));
+        quantitylist = new ArrayList<>(Arrays.asList(quantityItems));
+        unitlist = new ArrayList<>(Arrays.asList(unitItems));
 
         arrayadapter = new ArrayAdapter<>(Ingredients.this,R.layout.textview,stringlist );
+        arrayadapter1 = new ArrayAdapter<>(Ingredients.this,R.layout.textview,quantitylist );
+        arrayadapter2 = new ArrayAdapter<>(Ingredients.this,R.layout.textview,unitlist );
 
         arrayadapter.setDropDownViewResource(R.layout.textview);
+        arrayadapter1.setDropDownViewResource(R.layout.textview);
+        arrayadapter2.setDropDownViewResource(R.layout.textview);
 
         //Intent for receiving Recipe name
         submitbuttonintent = new Intent(this, Ingredients.class);
@@ -76,7 +101,8 @@ public class Ingredients extends AppCompatActivity {
         // spinner item select listener
 
         SPINNER.setAdapter(arrayadapter);
-
+        SPINNER1.setAdapter(arrayadapter1);
+        SPINNER2.setAdapter(arrayadapter2);
 
         // Edit Text Add Button Listener
         ADD.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +114,6 @@ public class Ingredients extends AppCompatActivity {
                 GETTEXT = EDITTEXT.getText().toString();
                 EDITTEXT.setText("");
                     stringlist.add(GETTEXT);
-
 
                 arrayadapter.notifyDataSetChanged();
 
@@ -117,9 +142,13 @@ public class Ingredients extends AppCompatActivity {
                                        int pos, long arg3) {
 
                 VALUE = SPINNER.getSelectedItem().toString();
+                value_quant = SPINNER1.getSelectedItem().toString();
+                value_unit = SPINNER2.getSelectedItem().toString();
+
                 if(VALUE!="Select Ingredient") {
 
-                    m_listItems.add(VALUE);
+                    values = VALUE + " " + value_quant + " " + value_unit;
+                    m_listItems.add(values);
                 }
             }
 
@@ -135,14 +164,13 @@ public class Ingredients extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                String value=null;
+
                 int i=0;
                 myDBHandler = new MyDBHandler(getApplicationContext());
                 sqLiteDatabase = myDBHandler.getWritableDatabase();
                 for ( i=0;i<arrayadapter.getCount();i++){
-                    value = arrayadapter.getItem(i);
-                    Log.i("ListView Items",value);
-                   myDBHandler.listViewtoDB(value,i,recipe_name,sqLiteDatabase);
+                    Log.i("ListView Items",values);
+                    myDBHandler.listViewtoDB(values,i,recipe_name,sqLiteDatabase);
                 }
 
                 Toast.makeText(getBaseContext(),"Ingredients Saved", Toast.LENGTH_LONG).show();

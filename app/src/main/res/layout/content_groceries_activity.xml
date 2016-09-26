@@ -12,13 +12,11 @@
     tools:context="com.wearable.whatsfordinner.groceries_activity"
     tools:showIn="@layout/activity_groceries_activity">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="ksjfhksdhfkjkljdskjfdknfkj"
-        android:id="@+id/textView"
+        android:id="@+id/grocerieslistView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -80,7 +80,7 @@ public class LandscapeFragment extends android.app.Fragment {
                 }
 
         //Recipe Item Set OnClickListener select the Ingredients and Directions for selected recipe
-        recipelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            recipelistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             String selectedRecipe = recipelistview.getItemAtPosition(position).toString();
 

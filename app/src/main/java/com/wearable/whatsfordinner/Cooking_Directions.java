@@ -18,6 +18,7 @@ public class Cooking_Directions extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     TextView tv;
     Intent donebuttonintent = getIntent();
+    Intent nutritionpageintent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class Cooking_Directions extends AppCompatActivity {
         setSupportActionBar(toolbar);
         directions = (Button)findViewById(R.id.directionadd);
         tv = (TextView)findViewById(R.id.directions);
+        donebuttonintent=new Intent(this, Cooking_Directions.class);
+        nutritionpageintent = new Intent(Cooking_Directions.this, Nutrition_Manager.class);
 
        //Receiving recipe name
         Bundle extras=getIntent().getExtras();
@@ -48,6 +51,8 @@ public class Cooking_Directions extends AppCompatActivity {
 
                 Toast.makeText(getBaseContext(),"Directions Saved", Toast.LENGTH_LONG).show();
                 myDBHandler.close();
+                nutritionpageintent.putExtra("Recipe",recipename2);
+                startActivity(nutritionpageintent);
 
             }
 

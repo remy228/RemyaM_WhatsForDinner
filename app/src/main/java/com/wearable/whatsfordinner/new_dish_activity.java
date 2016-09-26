@@ -31,10 +31,12 @@ public class new_dish_activity extends AppCompatActivity {
     Button submitButton;
     EditText recipeInput ;
     TextView recipeText;
-    Context context;
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
-    Intent submitbuttonintent;
+    Button addIngredientButton;
+    Button addDirectionsButton;
+    Button addNutritionButton;
+    String recipename;
 
     ArrayList<String> recipesarray = new ArrayList<>();
 
@@ -46,51 +48,118 @@ public class new_dish_activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        recipeInput = (EditText)findViewById(R.id.ingredientsInput);
-        submitButton = (Button)findViewById(R.id.submitButton);
+        recipeInput = (EditText) findViewById(R.id.ingredientsInput);
+        submitButton = (Button) findViewById(R.id.submitButton);
         recipeText = (TextView) findViewById(R.id.recipeText);
-        imageView = (ImageView)findViewById(R.id.imageView);
-        button = (Button)findViewById(R.id.photobutton);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        button = (Button) findViewById(R.id.photobutton);
+        addIngredientButton = (Button) findViewById(R.id.addIngredient);
+        addDirectionsButton = (Button) findViewById(R.id.addDirections);
+        addNutritionButton = (Button) findViewById(R.id.addNutrition);
 
         //Send recipe intent
-        submitbuttonintent = new Intent(new_dish_activity.this, Ingredients.class);
 
 
-
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-                    public void onClick(View v){
+            public void onClick(View v) {
                 openGallery();
             }
         });
 
-        submitButton.setOnClickListener(new View.OnClickListener(){
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                String recipename = recipeInput.getText().toString();
+            public void onClick(View v) {
+               recipename = recipeInput.getText().toString();
 
-                if(recipesarray.contains(recipename))
-                {
-                    Toast.makeText(getBaseContext(),"Recipe already exists!", Toast.LENGTH_LONG).show();
+                if (recipesarray.contains(recipename)) {
+                    Toast.makeText(getBaseContext(), "Recipe already exists!", Toast.LENGTH_LONG).show();
                 }
-                else {
+                else  if(!recipename.isEmpty())
+
+                {
+                    Intent intent = new Intent(new_dish_activity.this, Ingredients.class);
                     recipesarray.add(recipename);
                     myDBHandler = new MyDBHandler(getApplicationContext());
                     sqLiteDatabase = myDBHandler.getWritableDatabase();
                     myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
                     Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
                     myDBHandler.close();
-                    //Send to Ingredients activity
-                    submitbuttonintent.putExtra("Recipe",recipename);
-                    startActivity(submitbuttonintent);
+                    intent.putExtra("Recipe", recipename);
+                    startActivity(intent);
 
                 }
 
+                    else
+                    {
+                        Toast.makeText(getBaseContext(), "Please enter a Recipe to continue!", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+
+        });
+
+
+        addIngredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recipename = recipeInput.getText().toString();
+                Intent intent = new Intent(new_dish_activity.this, Ingredients.class);
+                Log.i("Ingredients button", "testing activity");
+                   if (!recipename.isEmpty()) {
+                        intent.putExtra("Recipe", recipename);
+                        startActivity(intent);
+                    }
+
+                    else
+                    {
+                        Toast.makeText(getBaseContext(), "Please enter a Recipe to continue!", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+        });
+
+
+    addDirectionsButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            recipename = recipeInput.getText().toString();
+            Intent intent = new Intent(new_dish_activity.this, Cooking_Directions.class);
+            Log.i("Directions button", "testing activity");
+                if (!recipename.isEmpty()) {
+                    intent.putExtra("Recipe", recipename);
+                    startActivity(intent);
+                 }
+
+            else
+            {
+                Toast.makeText(getBaseContext(), "Please enter a Recipe to continue!", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    });
+
+   addNutritionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recipename = recipeInput.getText().toString();
+                Intent intent = new Intent(new_dish_activity.this, Nutrition_Manager.class);
+                Log.i("Directions button", "testing activity");
+                    if (!recipename.isEmpty()) {
+                        intent.putExtra("Recipe", recipename);
+                        startActivity(intent);
+                    }
+
+                else
+                {
+                    Toast.makeText(getBaseContext(), "Please enter a Recipe to continue!", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
-
-   }
+}
 
     //Choose image from gallery
     private void openGallery()

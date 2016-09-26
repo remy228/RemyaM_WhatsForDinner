@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/hot"
+        android:src="@drawable/recipes"
         android:layout_alignTop="@+id/photobutton"
         android:layout_alignRight="@+id/ingredientsInput"
         android:layout_alignEnd="@+id/ingredientsInput"
@@ -90,7 +90,8 @@
         android:layout_alignLeft="@+id/addDirections"
         android:layout_alignStart="@+id/addDirections"
         android:layout_alignRight="@+id/addDirections"
-        android:layout_alignEnd="@+id/addDirections" />
+        android:layout_alignEnd="@+id/addDirections"
+        android:id="@+id/addNutrition" />
 
     <TextView
         android:layout_width="wrap_content"
