@@ -11,6 +11,8 @@ public class RecipeContract {
         public static final String TABLE_NAME2 = "Selected_Recipes";
         public static final String TABLE_NAME3 = "Groceries";
         public static final String TABLE_NAME4 = "Nutrition";
+        public static final String TABLE_NAME5 = "Basic_Ingredients";
+        public static final String COLUMN_INGREDIENT_NAME = "Ingredient_Name";
         public static final String COLUMN_RECIPE_NAME = "Recipe_Name";
         public static final String COLUMN_CALORIES = "Calories";
         public static final String COLUMN_CARBS = "Carbohydrates";

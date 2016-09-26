@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_8.db";
+    public static final String DATABASE_NAME = "WhatsForDinner_9.db";
     public static final int DATABASE_VERSION = 1;
    private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
@@ -38,6 +38,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS:" , "Db has been created");
     }
 
+    private static final String CREATE_QUERY5 =
+            "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME5 + "(" + RecipeContract.NewRecipeInfo.COLUMN_INGREDIENT_NAME + " TEXT); ";
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -51,7 +54,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS:" , "Table3 has been created");
         db.execSQL(CREATE_QUERY4);
         Log.e("DATABASE OPERATIONS:" , "Table4 has been created");
-
+        db.execSQL(CREATE_QUERY5);
+        Log.e("DATABASE OPERATIONS:" , "Table5 has been created");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_INGREDIENT_NAME,"Cheese");
+        db.insertWithOnConflict(RecipeContract.NewRecipeInfo.TABLE_NAME5,null,contentValues,SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     //Adding Recipe to Database
@@ -66,6 +73,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_SELECTEDRECIPENAME,recipe_name);
         db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME2,null,contentValues);
+        Log.e("DATABASE OPERATIONS:" , "Selected Recipe has been inserted");
+    }
+
+
+    public void addIngredientsforSpinner(String ingredient_name, SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_INGREDIENT_NAME,ingredient_name);
+        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME5,null,contentValues);
         Log.e("DATABASE OPERATIONS:" , "Selected Recipe has been inserted");
     }
 
