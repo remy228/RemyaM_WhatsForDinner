@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MyDBHandler extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "WhatsForDinner_9.db";
+    public static final String DATABASE_NAME = "WhatsForDinner_12.db";
     public static final int DATABASE_VERSION = 1;
    private static final String CREATE_QUERY =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME + "(" + RecipeContract.NewRecipeInfo.COLUMN_RECIPENAME + " TEXT, " +
@@ -41,6 +41,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
     private static final String CREATE_QUERY5 =
             "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME5 + "(" + RecipeContract.NewRecipeInfo.COLUMN_INGREDIENT_NAME + " TEXT); ";
 
+    private static final String CREATE_QUERY6 =
+            "CREATE TABLE "+ RecipeContract.NewRecipeInfo.TABLE_NAME6 + "(" + RecipeContract.NewRecipeInfo.COLUMN_CALORIES + " INTEGER, " + RecipeContract.NewRecipeInfo.COLUMN_CARBS + " INTEGER, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_MINERALS+ " TEXT, " + RecipeContract.NewRecipeInfo.COLUMN_VITAMINS+ " TEXT, " +
+                    RecipeContract.NewRecipeInfo.COLUMN_SUGAR + " TEXT);";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -59,6 +63,8 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_INGREDIENT_NAME,"Cheese");
         db.insertWithOnConflict(RecipeContract.NewRecipeInfo.TABLE_NAME5,null,contentValues,SQLiteDatabase.CONFLICT_IGNORE);
+        db.execSQL(CREATE_QUERY6);
+        Log.e("DATABASE OPERATIONS:" , "Table6 has been created");
     }
 
     //Adding Recipe to Database
@@ -170,6 +176,18 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
 
 //Ends Here
+
+
+    public void weeklynutritiontoDB(int calories, int carbohydrates, int minerals, int vitamins, int sugar, SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_CALORIES, calories);
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_CARBS, calories);
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_MINERALS, calories);
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_VITAMINS, calories);
+        contentValues.put(RecipeContract.NewRecipeInfo.COLUMN_SUGAR, calories);
+        db.insert(RecipeContract.NewRecipeInfo.TABLE_NAME6, null, contentValues);
+        Log.e("DATABASE OPERATIONS:", "Weekly Nutrition has been inserted");
+    }
 
 
     @Override

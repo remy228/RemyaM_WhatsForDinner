@@ -1,4 +1,5 @@
 package com.wearable.whatsfordinner;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -325,7 +326,19 @@ public class LandscapeFragment extends android.app.Fragment {
         }
    });
 
+            recipelistview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
+            public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
+                // TODO Auto-generated method stub
+                String str=recipelistview.getItemAtPosition(position).toString();
+                Intent intent;
+                intent = new Intent(getActivity().getBaseContext(), new_dish_activity.class);
+                intent.putExtra("Recipe",str);
+                Log.i("Testing the intent", str);
+                startActivity(intent);
+                return true;
+            }
+        });
 
         return view;
     }

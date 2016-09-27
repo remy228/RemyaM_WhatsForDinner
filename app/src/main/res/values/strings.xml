@@ -28,4 +28,6 @@ This product is protected by copyright and distributed under
 licenses restricting copying, distribution and decompilation."</string>
     <string name="recipes">RECIPES</string>
     <string name="title_activity_nutrition__manager">Nutrition_Manager</string>
+    <string name="title_activity_weekly__nutrition__manager">Weekly_Nutrition_Manager</string>
+    <string name="title_activity_string_adapter">StringAdapter</string>
 </resources>

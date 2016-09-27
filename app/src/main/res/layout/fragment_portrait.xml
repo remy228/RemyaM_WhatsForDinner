@@ -7,8 +7,8 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="453dp"
+        android:layout_width="match_parent"
+        android:layout_height="522dp"
         android:id="@+id/display_listview"
         android:layout_gravity="right|center_vertical" />
 

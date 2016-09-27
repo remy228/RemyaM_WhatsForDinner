@@ -16,7 +16,10 @@ import android.widget.Toast;
 public class Nutrition_Manager extends AppCompatActivity {
 
     Intent mainpageintent;
+    Intent weeklygoalspageintent;
     Button doneButton;
+    Button noinfoButton;
+    Button weeklygoalsButton;
     MyDBHandler myDBHandler;
     SQLiteDatabase sqLiteDatabase;
     Intent submitbuttonintent = getIntent();
@@ -36,6 +39,8 @@ public class Nutrition_Manager extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mainpageintent = new Intent(Nutrition_Manager.this, MainActivity.class);
         submitbuttonintent = new Intent(this, Nutrition_Manager.class);
+        weeklygoalspageintent = new Intent(this, Weekly_Nutrition_Manager.class);
+
         Bundle extras=getIntent().getExtras();
         final String recipe_name = extras.getString("Recipe");
 
@@ -45,6 +50,9 @@ public class Nutrition_Manager extends AppCompatActivity {
         vitamins = (EditText)findViewById(R.id.textView46);
         sugar = (EditText)findViewById(R.id.textView47);
         doneButton = (Button) findViewById(R.id.nutritionButton);
+        noinfoButton = (Button) findViewById(R.id.noinfobutton);
+        weeklygoalsButton = (Button) findViewById(R.id.weeklygoalbutton);
+
 
 
         doneButton.setOnClickListener(new View.OnClickListener(){
@@ -69,6 +77,26 @@ public class Nutrition_Manager extends AppCompatActivity {
 
             }
         });
+
+        noinfoButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(mainpageintent);
+
+            }
+        });
+
+
+        weeklygoalsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                startActivity(weeklygoalspageintent);
+
+
+            }
+        });
+
 
     }
 

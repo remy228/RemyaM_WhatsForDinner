@@ -83,6 +83,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.wearable.whatsfordinner.MainActivity" />
         </activity>
+        <activity
+            android:name=".Weekly_Nutrition_Manager"
+            android:label="@string/title_activity_weekly__nutrition__manager"
+            android:parentActivityName=".Nutrition_Manager"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wearable.whatsfordinner.Nutrition_Manager" />
+        </activity>
+
     </application>
 
 </manifest>

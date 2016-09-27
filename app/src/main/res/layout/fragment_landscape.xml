@@ -9,25 +9,29 @@
         android:layout_width="389dp"
         android:layout_height="421dp" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:paddingTop="50dp"
-        android:layout_height="362dp"
-        android:id="@+id/display_listview"
-        android:layout_gravity="right|center_vertical" />
-
     <TextView
-        android:layout_width="256dp"
-        android:layout_height="161dp"
-        android:text="New Text"
-        android:id="@+id/ingredientstextView"
-        android:layout_gravity="right|top" />
-
-    <TextView
-        android:layout_width="261dp"
-        android:layout_height="255dp"
-        android:text="New Text"
+        android:layout_width="296dp"
+        android:layout_height="149dp"
+        android:text="Cooking Directions:"
         android:id="@+id/directionstextView"
-        android:layout_gravity="right|bottom" />
+        android:layout_gravity="right|bottom"
+        android:layout_marginTop="400dp"
+        android:background="@color/button_material_light" />
+
+    <ListView
+        android:layout_width="141dp"
+        android:paddingTop="70dp"
+        android:layout_height="match_parent"
+        android:id="@+id/display_listview"
+        android:layout_gravity="left|top" />
+
+    <TextView
+        android:layout_width="296dp"
+        android:layout_height="129dp"
+        android:text="Ingredients:"
+        android:id="@+id/ingredientstextView"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="80dp"
+        android:background="@color/highlighted_text_material_dark" />
 
 </FrameLayout>

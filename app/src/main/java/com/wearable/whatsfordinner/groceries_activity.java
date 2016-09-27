@@ -37,8 +37,10 @@ public class groceries_activity extends AppCompatActivity {
         try {
             while (cur.moveToNext()) {
                 String uname = cur.getString(cur.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_INGREDIENTNAME));
-               groceriesarray.add(uname);
-                Log.i("Recipe Array", "Recipes Added to array");
+                if(!groceriesarray.contains(uname)) {
+                    groceriesarray.add(uname);
+                }
+                    Log.i("Recipe Array", uname);
 
             }
 
@@ -46,7 +48,7 @@ public class groceries_activity extends AppCompatActivity {
             cur.close();
         }
 
-        // Displaying the groceries in the Groceries Screen
+ // Displaying the groceries in the Groceries Screen
 
         for (int i = 0; i < groceriesarray.size(); i++) {
             if (groceriesarray.toString() != null) {
@@ -63,7 +65,7 @@ public class groceries_activity extends AppCompatActivity {
             }
         }
 
-
     }
+
 
 }

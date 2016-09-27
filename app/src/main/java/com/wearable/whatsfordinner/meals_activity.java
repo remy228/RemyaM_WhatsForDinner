@@ -51,6 +51,7 @@ public class meals_activity extends AppCompatActivity {
     ArrayList<String> groceriesrecipearray = new ArrayList<>();
     ArrayList<String> groceries = new ArrayList<>();
     Button mealsButton;
+    int uname, uname1, uname2, uname3, uname4, uname5, uname6, uname7, uname8, uname9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -703,9 +704,6 @@ public class meals_activity extends AppCompatActivity {
                 }
 
 
-
-
-
                 //Adding all the selected recipes' ingredients from Meals screen into an array
 
                 for (String s : groceriesrecipearray) {
@@ -918,7 +916,163 @@ public class meals_activity extends AppCompatActivity {
                 for ( String s: groceries){
 
                     myDBHandler.groceriestoListView(s,sqLiteDatabase);
+
                 }
+                myDBHandler = new MyDBHandler(getApplicationContext());
+                sqLiteDatabase = myDBHandler.getReadableDatabase();
+                //Add the values to Spinner from database
+               Cursor cur = sqLiteDatabase.rawQuery(" SELECT SUM(Calories)FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME4, null);
+
+                try {
+
+                    while (cur.moveToNext()) {
+                          uname = cur.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                       // Toast.makeText(getBaseContext(),"Total Calories for the week: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur.close();
+                }
+
+                Cursor cur5 = sqLiteDatabase.rawQuery(" SELECT Calories FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME6, null);
+
+                try {
+                    while (cur5.moveToNext()) {
+                          uname1 = cur5.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                      //  Toast.makeText(getBaseContext(),"Your weekly Calorie goal: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur5.close();
+                }
+
+                if(uname < uname1)
+                {
+                    Toast.makeText(getBaseContext(),"Your weekly Calorie goal has not been met!",Toast.LENGTH_LONG).show();
+                }
+
+
+                Cursor cur1 = sqLiteDatabase.rawQuery(" SELECT SUM(Carbohydrates)FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME4, null);
+
+                try {
+                    while (cur1.moveToNext()) {
+                       uname2 = cur1.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                        //Toast.makeText(getBaseContext(),"Total Carbs for the week: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur1.close();
+                }
+
+                Cursor cur6 = sqLiteDatabase.rawQuery(" SELECT Carbohydrates FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME6, null);
+
+                try {
+                    while (cur6.moveToNext()) {
+                        uname3 = cur6.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                       // Toast.makeText(getBaseContext(),"Your weekly Carbs goal: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur6.close();
+                }
+
+                if(uname2 < uname3)
+                {
+                    Toast.makeText(getBaseContext(),"Your weekly Carbs goal has not been met!",Toast.LENGTH_LONG).show();
+                }
+
+                Cursor cur2 = sqLiteDatabase.rawQuery(" SELECT SUM(Minerals)FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME4, null);
+
+                try {
+                    while (cur2.moveToNext()) {
+                        uname4 = cur2.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                      //  Toast.makeText(getBaseContext(),"Total Minerals for the week: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur2.close();
+                }
+
+                Cursor cur7 = sqLiteDatabase.rawQuery(" SELECT Minerals FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME6, null);
+
+                try {
+                    while (cur7.moveToNext()) {
+                      uname5 = cur7.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                      //  Toast.makeText(getBaseContext(),"Your weekly Minerals goal: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur7.close();
+                }
+
+
+                if(uname4 < uname5)
+                {
+                    Toast.makeText(getBaseContext(),"Your weekly Minerals goal has not been met!",Toast.LENGTH_LONG).show();
+                }
+
+                Cursor cur3 = sqLiteDatabase.rawQuery(" SELECT SUM(Vitamins)FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME4, null);
+
+                try {
+                    while (cur3.moveToNext()) {
+                       uname6 = cur3.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                     //   Toast.makeText(getBaseContext(),"Total Vitamins for the week: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur3.close();
+                }
+
+
+                Cursor cur8 = sqLiteDatabase.rawQuery(" SELECT Vitamins FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME6, null);
+
+                try {
+                    while (cur8.moveToNext()) {
+                      uname7 = cur8.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                       // Toast.makeText(getBaseContext(),"Your weekly Vitamin goal: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur8.close();
+                }
+
+                if(uname6 < uname7)
+                {
+                    Toast.makeText(getBaseContext(),"Your weekly Vitamin goal has not been met!",Toast.LENGTH_LONG).show();
+                }
+
+
+
+                Cursor cur4 = sqLiteDatabase.rawQuery(" SELECT SUM(Sugar)FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME4, null);
+
+                try {
+                    while (cur4.moveToNext()) {
+                         uname8 = cur4.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                    //   Toast.makeText(getBaseContext(),"Total Sugar for the week: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur4.close();
+                }
+
+
+                Cursor cur9 = sqLiteDatabase.rawQuery(" SELECT Sugar FROM " + RecipeContract.NewRecipeInfo.TABLE_NAME6, null);
+
+                try {
+                    while (cur9.moveToNext()) {
+                        uname9 = cur9.getColumnIndex(RecipeContract.NewRecipeInfo.COLUMN_CALORIES);
+                     //   Toast.makeText(getBaseContext(),"Your weekly Sugar goals: " + uname, Toast.LENGTH_LONG).show();
+                    }
+
+                } finally {
+                    cur9.close();
+                }
+
+                if(uname8 < uname9)
+                {
+                    Toast.makeText(getBaseContext(),"Your weekly Sugar goal has not been met!",Toast.LENGTH_LONG).show();
+                }
+
 
 
             }
