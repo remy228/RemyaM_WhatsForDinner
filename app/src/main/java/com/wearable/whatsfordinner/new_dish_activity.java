@@ -138,8 +138,15 @@ public class new_dish_activity extends AppCompatActivity {
                 Intent intent = new Intent(new_dish_activity.this, Ingredients.class);
                 Log.i("Ingredients button", "testing activity");
                    if (!recipename.isEmpty()) {
-                        intent.putExtra("Recipe", recipename);
-                        startActivity(intent);
+                        recipesarray.add(recipename);
+                        myDBHandler = new MyDBHandler(getApplicationContext());
+                       sqLiteDatabase = myDBHandler.getWritableDatabase();
+                       myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
+                       Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
+                       myDBHandler.close();
+                       intent.putExtra("Recipe", recipename);
+                       startActivity(intent);
+
                     }
 
                     else
@@ -159,6 +166,12 @@ public class new_dish_activity extends AppCompatActivity {
             Intent intent = new Intent(new_dish_activity.this, Cooking_Directions.class);
             Log.i("Directions button", "testing activity");
                 if (!recipename.isEmpty()) {
+                    recipesarray.add(recipename);
+                    myDBHandler = new MyDBHandler(getApplicationContext());
+                    sqLiteDatabase = myDBHandler.getWritableDatabase();
+                    myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
+                    Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
+                    myDBHandler.close();
                     intent.putExtra("Recipe", recipename);
                     startActivity(intent);
                  }
@@ -178,6 +191,12 @@ public class new_dish_activity extends AppCompatActivity {
                 Intent intent = new Intent(new_dish_activity.this, Nutrition_Manager.class);
                 Log.i("Directions button", "testing activity");
                     if (!recipename.isEmpty()) {
+                        recipesarray.add(recipename);
+                        myDBHandler = new MyDBHandler(getApplicationContext());
+                        sqLiteDatabase = myDBHandler.getWritableDatabase();
+                        myDBHandler.addRecipeInformation(recipename, sqLiteDatabase);
+                        Toast.makeText(getBaseContext(), "Recipe Saved", Toast.LENGTH_LONG).show();
+                        myDBHandler.close();
                         intent.putExtra("Recipe", recipename);
                         startActivity(intent);
                     }

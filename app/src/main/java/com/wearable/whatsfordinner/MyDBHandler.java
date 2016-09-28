@@ -90,6 +90,19 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Log.e("DATABASE OPERATIONS:" , "Selected Recipe has been inserted");
     }
 
+    public void changeRecipeQuantity(int i, String selectedRecipe, SQLiteDatabase db){
+        if(i==1) {
+            db.execSQL("UPDATE Groceries SET Quantity='Quantity+1' WHERE Shopping_Ingredients ='" + selectedRecipe + "'");
+            Log.e("DATABASE OPERATIONS:", "Selected Recipe has been updated");
+        }
+        else if(i==2)
+        {
+            db.execSQL("UPDATE Groceries SET Quantity='Quantity-1' WHERE Shopping_Ingredients ='" + selectedRecipe + "'");
+            Log.e("DATABASE OPERATIONS:", "Selected Recipe has been updated");
+        }
+
+    }
+
 
     //Adding Ingredients to Database
     public void listViewtoDB(String item, int pos, String recipevalue, SQLiteDatabase db){

@@ -199,8 +199,15 @@ public class Ingredients extends AppCompatActivity {
 
                 if (VALUE != "Select Ingredient") {
                      listvalue2 = VALUE + " " + value_quant + " " + value_unit;
-                    m_listItems.add(listvalue2);
-                    arrayadapter.notifyDataSetChanged();
+                    if(m_listItems.size()<10) {
+                        m_listItems.add(listvalue2);
+                        arrayadapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        Toast.makeText(Ingredients.this, "Item Added", Toast.LENGTH_LONG).show();
+                    }
+
                 }
                 GETTEXT = EDITTEXT.getText().toString();
                 if(GETTEXT.length()>0) {
@@ -209,9 +216,14 @@ public class Ingredients extends AppCompatActivity {
                     listvalue = GETTEXT + " " + value_quant + " " + value_unit;
                     stringlist.add(GETTEXT);
                     spinnerarray.add(GETTEXT);
-                    m_listItems.add(listvalue);
-                    arrayadapter.notifyDataSetChanged();
-
+                    if(m_listItems.size()<10) {
+                        m_listItems.add(listvalue);
+                        arrayadapter.notifyDataSetChanged();
+                    }
+                    else
+                    {
+                        Toast.makeText(Ingredients.this, "Item Added", Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 //Add Ingredients for spinner
